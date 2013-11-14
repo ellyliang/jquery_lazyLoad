@@ -19,6 +19,7 @@
             skip_invisible     : true,
             appear             : undefined,
             load               : undefined,
+            vertical_only      : false,
             placeholderDataImg : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
             // Support IE6\7 that does not support data image
             placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
@@ -70,18 +71,36 @@
         elements.each(function(){
             var $this = $(this)
             if(options.skip_invisible &&
-             !($this.width() || $this.height()) && $this.css("display") !== "none"){ // Support zepto for future
+            // Support zepto for future
+             !($this.width() || $this.height()) && $this.css("display") !== "none"){
                 return
             }
-            if(abovethetop(this, options) || leftofbegin(this, options)){
-                // Nothing. 
-            }else if(!belowthefold(this, options) && !rightoffold(this, options)){
-                $this.trigger('appear')
+            function appear(){
+                $this.trigger('_lazyload_appear')
                 // if we found an image we'll load, reset the counter 
                 counter = 0
+            }
+            // If vertical_only is true, only check the vertical to decide appear or not
+            // For most situation, page can not scroll on landscape, set vertical_only to true will improve performance
+            if(options.vertical_only){
+                if(abovethetop(this, options)){
+                    // Nothing. 
+                }else if(!belowthefold(this, options)){
+                    appear()
+                }else{
+                    if(++counter > options.failure_limit){
+                        return false
+                    }
+                }
             }else{
-                if(++counter > options.failure_limit){
-                    return false
+                if(abovethetop(this, options) || leftofbegin(this, options)){
+                    // Nothing. 
+                }else if(!belowthefold(this, options) && !rightoffold(this, options)){
+                    appear()
+                }else{
+                    if(++counter > options.failure_limit){
+                        return false
+                    }
                 }
             }
         })
@@ -139,7 +158,7 @@
             }
             
             // When appear is triggered load original image. 
-            $element.one('appear',function(){
+            $element.one('_lazyload_appear',function(){
                 var elements_left,
                     effectIsNotImmediacyShow
                 if(!element._lazyload_loaded){
@@ -177,7 +196,7 @@
             if (!isScrollTypeEvent){
                 $element.on(options.event, function(){
                     if (!element._lazyload_loaded){
-                        $element.trigger('appear')
+                        $element.trigger('_lazyload_appear')
                     }
                 })
             }
@@ -201,7 +220,7 @@
             $window.on('pageshow', function(event){
                 if (event.originalEvent && event.originalEvent.persisted){
                     elements.each(function(){
-                        $(this).trigger('appear')
+                        $(this).trigger('_lazyload_appear')
                     })
                 }
             })

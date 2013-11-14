@@ -13,7 +13,7 @@ This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola
 
 h1. How to Use?
 
-h2. Basic use
+h2. Basic
 
 Lazy Load depends on jQuery. Include them both in end of your HTML code:
 
@@ -30,7 +30,12 @@ then in your code do:
 
 This causes all images of class lazy to be lazy loaded. 
 
-More information on "Lazy Load":http://www.appelsiini.net/projects/lazyload project page.
+h2. Advanced
+
+h3. Plugin enabled with AJAX loaded content
+
+<pre>$("img.lazy").lazyload();</pre>
+
 
 h1. License
 

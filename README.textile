@@ -32,7 +32,7 @@ This causes all images of class lazy to be lazy loaded.
 
 h2. Advanced
 
-h3. Plugin enabled with AJAX loaded content
+h3. With AJAX loaded content
 
 <pre>
 $("#container").one("click", function() {
@@ -43,7 +43,16 @@ $("#container").one("click", function() {
 </pre>
 <pre><img class="lazy" data-original="img/example.jpg" width="765" height="574"></pre>
 
-see enabled_ajax.html
+See `enabled_ajax.html`
+
+h3. With css background images
+
+<pre>
+$("div.lazy").lazyload();
+</pre>
+<pre><div class="lazy" data-original="img/bmw_m1_hood.jpg" style="background-image: url('img/grey.gif'); width: 765px; height: 574px;"></div></pre>
+
+See `enabled_background.html`
 
 h1. License
 

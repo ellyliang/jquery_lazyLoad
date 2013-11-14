@@ -34,8 +34,16 @@ h2. Advanced
 
 h3. Plugin enabled with AJAX loaded content
 
-<pre>$("img.lazy").lazyload();</pre>
+<pre>
+$("#container").one("click", function() {
+    $("#container").load("images.html", function(response, status, xhr) {
+        $("img.lazy").lazyload();
+    });              
+});
+</pre>
+<pre><img class="lazy" data-original="img/example.jpg" width="765" height="574"></pre>
 
+see enabled_ajax.html
 
 h1. License
 

@@ -13,6 +13,7 @@
             failure_limit      : 0,
             event              : 'scroll',
             effect             : 'show',
+            effect_params       : undefined,
             container          : window,
             data_attribute     : 'original',
             skip_invisible     : true,
@@ -108,7 +109,8 @@
             var element = this,
                 $element = $(element),
                 placeholderSrc = $element.attr('src'),
-                originalSrc = $element.data(options.data_attribute)
+                originalSrc = $element.data(options.data_attribute),
+                isImg = $element.is('img')
 
             /* Remove image from array so it is not looped next time. */
             function getUnloadElements(elements){
@@ -126,8 +128,9 @@
 
             element._lazyload_loaded = false
 
-            /* If no src attribute given use placeholder. */
-            if(placeholderSrc === undefined || placeholderSrc === false){
+            // If element is an img and no src attribute given, use placeholder. 
+            if(isImg && !placeholderSrc){
+                // For browsers that do not support data image.
                 $element.on('error',function(){
                     $element.attr('src',options.placeholderRealImg)
                 }).attr('src',options.placeholderDataImg)
@@ -135,20 +138,28 @@
             
             /* When appear is triggered load original image. */
             $element.one('appear',function(){
-                var elements_left
+                var elements_left,
+                    effectIsNotImmediacyShow
                 if(!element._lazyload_loaded){
+                    effectIsNotImmediacyShow = (options.effect != 'show' && options.effect_params === undefined)
                     if(options.appear){
                         elements_left = elements.length
                         options.appear.call(element, elements_left, options)
                     }
                     $('<img />').on('load', function(){
-                        $element.hide()
-                        if($element.is('img')){
+                        // For most situation, the effect is immediacy show, at this time there is no need to hide element first
+                        // Hide this element may cause css reflow, call it as less as possible
+                        if(effectIsNotImmediacyShow){
+                            $element.hide()
+                        }
+                        if(isImg){
                             $element.attr('src', originalSrc)
                         }else{
-                            $element.css('background-image', 'url("' + originalSrc + '")')
+                            $element.css('background-image','url("' + originalSrc + '")')
                         }
-                        $element[options.effect](options.effect_speed)
+                        if(effectIsNotImmediacyShow){
+                            $element[options.effect](options.effect_params)
+                        }
                         element._lazyload_loaded = true
                         elements = getUnloadElements(elements)
                         if(options.load){

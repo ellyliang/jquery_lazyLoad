@@ -1,10 +1,10 @@
-/*
+/*!
  * Lazy Load - jQuery plugin for lazy loading images
  *
  * jieyou forked from tuupola/jquery_lazyload (see https://github.com/tuupola/jquery_lazyload)
  * see https://github.com/jieyou/jquery_lazyload
  *
- */
+ */ 
  
 ;(function($,window,document,undefined){
     var $window = $(window),
@@ -20,7 +20,8 @@
             appear             : undefined,
             load               : undefined,
             placeholderDataImg : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
-            placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png' // Support IE6\7 that does not support data image
+            // Support IE6\7 that does not support data image
+            placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
         },
         isIOS5 = (/iphone|ipod|ipad.*os 5/gi).test(navigator.appVersion)
 
@@ -68,14 +69,15 @@
         var counter = 0
         elements.each(function(){
             var $this = $(this)
-            if(options.skip_invisible && !($this.width() || $this.height()) && $this.css("display") !== "none"){ // support zepto
+            if(options.skip_invisible &&
+             !($this.width() || $this.height()) && $this.css("display") !== "none"){ // Support zepto for future
                 return
             }
             if(abovethetop(this, options) || leftofbegin(this, options)){
-                /* Nothing. */
+                // Nothing. 
             }else if(!belowthefold(this, options) && !rightoffold(this, options)){
                 $this.trigger('appear')
-                /* if we found an image we'll load, reset the counter */
+                // if we found an image we'll load, reset the counter 
                 counter = 0
             }else{
                 if(++counter > options.failure_limit){
@@ -99,10 +101,10 @@
             }
         })
 
-        /* Cache container as jQuery as object. */
+        // Cache container as jQuery as object. 
         $container = (options.container === undefined || options.container === window) ? $window : $(options.container)
 
-        /* isScrollTypeEvent or not */
+        // isScrollTypeEvent or not 
         isScrollTypeEvent = options.event == 'scroll' || options.event == 'scrollstart' || options.event == 'scrollstop'
 
         elements.each(function(){
@@ -112,7 +114,7 @@
                 originalSrc = $element.data(options.data_attribute),
                 isImg = $element.is('img')
 
-            /* Remove image from array so it is not looped next time. */
+            // Remove image from array so it is not looped next time. 
             function getUnloadElements(elements){
                 var temp = $.grep(elements, function(element){
                     return !element._lazyload_loaded
@@ -136,7 +138,7 @@
                 }).attr('src',options.placeholderDataImg)
             }
             
-            /* When appear is triggered load original image. */
+            // When appear is triggered load original image. 
             $element.one('appear',function(){
                 var elements_left,
                     effectIsNotImmediacyShow
@@ -170,8 +172,8 @@
                 }
             })
 
-            /* When wanted event is triggered load original image */
-            /* by triggering appear.                              */
+            // When wanted event is triggered load original image 
+            // by triggering appear.                              
             if (!isScrollTypeEvent){
                 $element.on(options.event, function(){
                     if (!element._lazyload_loaded){
@@ -181,20 +183,20 @@
             }
         })
     
-        /* Fire one scroll event per scroll. Not one scroll event per image. */
+        // Fire one scroll event per scroll. Not one scroll event per image. 
         if(isScrollTypeEvent){
             $container.on(options.event, function(){
                 return checkAppear(elements, options)
             })
         }
 
-        /* Check if something appears when window is resized. */
+        // Check if something appears when window is resized. 
         $window.on('resize', function(){
             checkAppear(elements, options)
         })
               
-        /* With IOS5 force loading images when navigating with back button. */
-        /* Non optimal workaround. */
+        // With IOS5 force loading images when navigating with back button. 
+        // Non optimal workaround. 
         if(isIOS5){
             $window.on('pageshow', function(event){
                 if (event.originalEvent && event.originalEvent.persisted){
@@ -205,7 +207,7 @@
             })
         }
 
-        /* Force initial check if images should appear. */
+        // Force initial check if images should appear. 
         $(function(){
             checkAppear(elements, options)
         })

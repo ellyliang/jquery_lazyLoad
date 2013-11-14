@@ -13,7 +13,7 @@
             failure_limit      : 0,
             event              : 'scroll',
             effect             : 'show',
-            effect_params       : undefined,
+            effect_params      : undefined,
             container          : window,
             data_attribute     : 'original',
             skip_invisible     : true,
@@ -80,7 +80,7 @@
                 // if we found an image we'll load, reset the counter 
                 counter = 0
             }
-            // If vertical_only is true, only check the vertical to decide appear or not
+            // If vertical_only is set to true, only check the vertical to decide appear or not
             // For most situation, page can not scroll on landscape, set vertical_only to true will improve performance
             if(options.vertical_only){
                 if(abovethetop(this, options)){

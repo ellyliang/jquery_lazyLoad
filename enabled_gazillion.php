@@ -5,24 +5,13 @@
   <meta charset="utf-8">
   <title>Lazy Load Enabled With Gazillion Images</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link type="text/css" media="screen" href="http://www.appelsiini.net/css/appelsiini.css" rel="stylesheet">
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="shortcut icon" href="http://www.appelsiini.net/img/favicon.ico">
+  <link type="text/css" media="screen" href="css/appelsiini.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet"><link href="css/jieyou.css" rel="stylesheet">
+  <link rel="shortcut icon" href="ico/favicon.ico">
   <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
   <![endif]-->
-  <script>
-//<![CDATA[
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-190966-1']);
-_gaq.push(['_trackPageview']);
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-//]]>
-  </script>
+  
   <style type="text/css">
     .container img {
       margin-bottom: 10px;
@@ -35,13 +24,17 @@ _gaq.push(['_trackPageview']);
     <div class="container">
       <div class="col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
         <h1>Lazy Load Plugin for jQuery</h1>
-        <a href="http://www.appelsiini.net/"><span class="label label-info">Blog</span></a>
-        <a href="http://www.appelsiini.net/projects"><span class="label label-danger">Projects</span></a>
-        <br>
-        <div>
-          <iframe src="http://ghbtns.com/github-btn.html?user=tuupola&amp;repo=jquery_lazyload&amp;type=watch&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="92" height="30"></iframe>    
-          <iframe src="http://ghbtns.com/github-btn.html?user=tuupola&amp;repo=jquery_lazyload&amp;type=fork&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="30"></iframe>
-        </div>
+        <p class="des">
+          <!--<iframe src="http://ghbtns.com/github-btn.html?user=tuupola&amp;repo=jquery_lazyload&amp;type=watch&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="92" height="30"></iframe>    
+          <iframe src="http://ghbtns.com/github-btn.html?user=tuupola&amp;repo=jquery_lazyload&amp;type=fork&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="30"></iframe>-->
+          This project is forked from <a href="https://github.com/tuupola/jquery_lazyload"><span class="label label-danger">tuupola/jquery_lazyload</span></a> and add features blow:<br/>
+          * Many Details for improve the performance;<br/>
+          * IE6/7 support;<br/>
+          * The `vertical_only` option, if set to true, only check images's vertical position will improve performance.
+        </p>
+        <p class="des">
+          More information on <a href="https://github.com/jieyou/jquery_lazyload"><span class="label label-danger">jieyou/jquery_lazyload</span></a>.
+        </p>
       </div>
     </div>
   </div>
@@ -268,10 +261,11 @@ _gaq.push(['_trackPageview']);
     </div>
   </div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="page_js/jquery.min.js"></script>
+  <!-- // <script src="//zeptojs.com/zepto.min.js"></script> -->
   <script src="jquery.lazyload.js?v=1.9.0"></script>
   <script src="jquery.scrollstop.js"></script>
-  <script src="http://www.appelsiini.net/js/all.js"></script>
+  <script src="page_js/demo.js"></script>
   <script type="text/javascript">
       $(function() {
           $("img.lazy").lazyload({

@@ -11,7 +11,9 @@ This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola
 * IE6/7 supported;
 * The `vertical_only` option, if set to true, only check images's vertical position will improve performance.
 
-h2. How to Use?
+h1. How to Use?
+
+h2. Basic use
 
 Lazy Load depends on jQuery. Include them both in end of your HTML code:
 

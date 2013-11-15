@@ -13,12 +13,12 @@
             failure_limit      : 0,
             event              : 'scroll',
             effect             : 'show',
-            effect_params      : undefined,
+            effect_params      : null,
             container          : window,
             data_attribute     : 'original',
             skip_invisible     : true,
-            appear             : undefined,
-            load               : undefined,
+            appear             : null,
+            load               : null,
             vertical_only      : false,
             placeholderDataImg : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
             // Support IE6\7 that does not support data image
@@ -81,7 +81,7 @@
                 counter = 0
             }
             // If vertical_only is set to true, only check the vertical to decide appear or not
-            // For most situation, page can not scroll on landscape, set vertical_only to true will improve performance
+            // In most situations, page can only scroll vertically, set vertical_only to true will improve performance
             if(options.vertical_only){
                 if(abovethetop(this, options)){
                     // Nothing. 
@@ -160,15 +160,16 @@
             // When appear is triggered load original image. 
             $element.one('_lazyload_appear',function(){
                 var elements_left,
+                    effectParamsIsArray = $.isArray(options.effect_params),
                     effectIsNotImmediacyShow
                 if(!element._lazyload_loaded){
-                    effectIsNotImmediacyShow = (options.effect != 'show' && options.effect_params === undefined)
+                    effectIsNotImmediacyShow = (options.effect != 'show' && (!options.effect_params || (effectParamsIsArray && options.effect_params.length == 0)))
                     if(options.appear){
                         elements_left = elements.length
                         options.appear.call(element, elements_left, options)
                     }
                     $('<img />').on('load', function(){
-                        // For most situation, the effect is immediacy show, at this time there is no need to hide element first
+                        // In most situations, the effect is immediacy show, at this time there is no need to hide element first
                         // Hide this element may cause css reflow, call it as less as possible
                         if(effectIsNotImmediacyShow){
                             $element.hide()
@@ -178,8 +179,8 @@
                         }else{
                             $element.css('background-image','url("' + originalSrc + '")')
                         }
-                        if(effectIsNotImmediacyShow){
-                            $element[options.effect](options.effect_params)
+                        if(effectIsNotImmediacyShow && effectParamsIsArray){
+                            $element[options.effect].apply($element,options.effect_params)
                         }
                         element._lazyload_loaded = true
                         elements = getUnloadElements(elements)

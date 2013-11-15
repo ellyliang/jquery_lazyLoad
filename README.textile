@@ -7,9 +7,9 @@ Using Lazy Load on long web pages containing many large images makes the page lo
 Lazy Load is inspired by "YUI ImageLoader":http://developer.yahoo.com/yui/imageloader/ Utility by Matt Mlinac.
 
 This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload and add features blow:
-* Many Details for improve the performance;
+* Modified many details to improve performance;
 * IE6/7 supported;
-* The `vertical_only` option, if set to true, only check images's vertical position will improve performance.
+* The `vertical_only` option, if set to true, only check images's vertical position,it can improve performance in page which can only scroll vertically.
 
 h1. How to Use?
 
@@ -94,7 +94,7 @@ $("img.lazy").lazyload({
 });
 </pre>
 
-See `enabled_gazillion.html`
+See `enabled_gazillion.php`
 
 h3. Scrolling in a horizontal container
 
@@ -102,9 +102,9 @@ h3. Scrolling in a horizontal container
 
 <pre>
 #container {
-	width: 800px;
-	overflow: scroll;
-}	
+    width: 800px;
+    overflow: scroll;
+}
 #inner_container {
     width: 4750px;
 }
@@ -123,10 +123,6 @@ h3. With fadein effect
 <pre><img class="lazy" data-original="img/example.jpg" width="765" height="574"></pre>
 
 <pre>
-<img class="lazy" data-original="img/example.jpg" width="765" height="574">
-</pre>
-
-<pre>
 $("img.lazy").lazyload({
     effect : "fadeIn"
 });
@@ -139,10 +135,6 @@ h3. Load images after `five second` delay
 <pre><img class="lazy" src="img/grey.gif" data-original="img/example.jpg" width="765" height="574"></pre>
 
 <pre>
-<img class="lazy" data-original="img/example.jpg" width="765" height="574">
-</pre>
-
-<pre>
 $(function() {          
     $("img.lazy").lazyload({
         event : "sporty"
@@ -150,7 +142,9 @@ $(function() {
 });
  
 $(window).bind("load", function() { 
-    var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 5000);
+    var timeout = setTimeout(function() {
+    	$("img.lazy").trigger("sporty")
+    }, 5000);
 });
 </pre>
 
@@ -159,10 +153,6 @@ See `enabled_timeout.html`
 h3. Using in (horizontal) wide page
 
 <pre><img class="lazy" data-original="img/example.jpg" width="765" height="574"></pre>
-
-<pre>
-<img class="lazy" data-original="img/example.jpg" width="765" height="574">
-</pre>
 
 <pre>
 $("img.lazy").lazyload({
@@ -177,16 +167,51 @@ h3. Using in page which can only scroll vertically
 <pre><img class="lazy" data-original="img/example.jpg" width="765" height="574"></pre>
 
 <pre>
-<img class="lazy" data-original="img/example.jpg" width="765" height="574">
-</pre>
-
-<pre>
 $("img.lazy").lazyload({
     vertical_only: true
 });
 </pre>
 
 See `enabled_vertical_only.html`
+
+h2. The options object
+
+You can use the options object as the first argument in the lazyload method.
+
+<pre>
+var options = {
+	// By default images are loaded when they appear on the screen. If you want images to load earlier use threshold parameter. Setting threshold to 200 causes image to load 200 pixels before it appears on viewport.
+	threshold          : 0, // default: 0. Another example: 200
+	// After scrolling page plugin loops though unloaded images. Loop checks if image has become visible. By default loop is stopped when first image outside viewport is found. This is based on following assumption. Order of images on page is same as order of images in HTML code. With some layouts assumption this might be wrong. You can control loading behaviour with failure_limit setting.
+    failure_limit      : 0, // default: 0. Another example: 10
+    // You can use jQuery event such as click or mouseover. You can also use custom events such as sporty or foobar. Default is to wait until user scrolls down and image appears on the viewport.
+    event              : 'scroll', // default: 'scroll'. Another example: 'click'
+    // By default plugin waits for image to fully load and calls show(). You can use any effect you want. Following code uses fadeIn effect. Check how it works at effect demo page.
+    effect             : 'show', // default: 'show'. Another example: 'fadein'
+    // the arguments array of `effect` function. For two examples, if `effect` is set to `show` and `effect_params` is set to [400], it will call `$element.show(400)` to show the image after 400ms; if `effect` is set to `fadein` and `effect_params` is set to [400,completeFunction], it will call `$element.fadein(400,completeFunction)` to fadeIn the image in 400ms and call the `completeFunction` when the animation is complete.
+    effect_params      : null, // default: undefined. Another example: [400].
+    // You can also use plugin for images inside scrolling container, such as div with scrollbar. Just pass the container as jQuery object. There is a demo for horizontal and vertical container.
+    container          : window,
+    // By default images's original url set in `data-original` attribute, you can change it to Another attribute such as `url`,so it will find the original url in `data-url` attribute.
+    data_attribute     : 'original', // default: 'original'. Another example: 'url'
+    // There are cases when you have images which are in viewport but not :visible. To improve performance plugin ignores not visible (`($this.width() || $this.height()) && $this.css("display") !== "none"){`) by default. If you want to load these images set skip_invisible to false.
+    skip_invisible     : true, // default: true. Another example: false
+    // Call when one image is appear to the viewport. Params are the appear image element node,count of elements not appear yet, and the options.
+    appear             : null, // default: undefined. Another example: function(element, elements_left, options){}
+    // Call when one image is load. Params are the appear image element node,count of elements not appear yet, and the options.
+    load               : null,
+    // In most situations, page can only scroll vertically.At this time, only check images's vertical position will improve performance.You can only set vertical_only to true when page can only scroll vertically.
+    vertical_only      : false, // default: false. Another example: true
+    // If element is an img and no src attribute given, use placeholder. 
+    placeholderDataImg : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
+    // Placeholder for IE6/7
+    placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
+}
+</pre>
+
+<pre>
+$("img.lazy").lazyload(options);
+</pre>
 
 h1. License
 

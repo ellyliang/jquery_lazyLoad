@@ -176,12 +176,12 @@ See `enabled_vertical_only.html`
 
 h2. The options object
 
-You can use the options object as the first argument in the lazyload method.
+You can use the options object as the first argument in the `lazyload` method.
 
 <pre>
 var options = {
-	// By default images are loaded when they appear on the screen. If you want images to load earlier use threshold parameter. Setting threshold to 200 causes image to load 200 pixels before it appears on viewport.
-	threshold          : 0, // default: 0. Another example: 200
+    // By default images are loaded when they appear on the screen. If you want images to load earlier use threshold parameter. Setting threshold to 200 causes image to load 200 pixels before it appears on viewport.
+    threshold          : 0, // default: 0. Another example: 200
 	// After scrolling page plugin loops though unloaded images. Loop checks if image has become visible. By default loop is stopped when first image outside viewport is found. This is based on following assumption. Order of images on page is same as order of images in HTML code. With some layouts assumption this might be wrong. You can control loading behaviour with failure_limit setting.
     failure_limit      : 0, // default: 0. Another example: 10
     // You can use jQuery event such as click or mouseover. You can also use custom events such as sporty or foobar. Default is to wait until user scrolls down and image appears on the viewport.
@@ -207,9 +207,6 @@ var options = {
     // Placeholder for IE6/7
     placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
 }
-</pre>
-
-<pre>
 $("img.lazy").lazyload(options);
 </pre>
 

@@ -4,23 +4,24 @@
  * jieyou forked from tuupola/jquery_lazyload (see https://github.com/tuupola/jquery_lazyload)
  * see https://github.com/jieyou/jquery_lazyload
  *
- */ 
+ */
  
 ;(function($,window,document,undefined){
     var $window = $(window),
         defaultOptions = {
-            threshold          : 0,
-            failure_limit      : 0,
-            event              : 'scroll',
-            effect             : 'show',
-            effect_params      : null,
-            container          : window,
-            data_attribute     : 'original',
-            skip_invisible     : true,
-            appear             : null,
-            load               : null,
-            vertical_only      : false,
-            placeholderDataImg : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
+            threshold            : 0,
+            failure_limit        : 0,
+            event                : 'scroll',
+            effect               : 'show',
+            effect_params        : null,
+            container            : window,
+            data_attribute       : 'original',
+            dara_group_attribute : 'group',
+            skip_invisible       : true,
+            appear               : null,
+            load                 : null,
+            vertical_only        : false,
+            placeholderDataImg   : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
             // Support IE6\7 that does not support data image
             placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
         },

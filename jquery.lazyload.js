@@ -1,11 +1,9 @@
 /*!
  * Lazy Load - jQuery plugin for lazy loading images
  *
- * jieyou forked from tuupola/jquery_lazyload (see https://github.com/tuupola/jquery_lazyload)
  * see https://github.com/jieyou/jquery_lazyload
  *
  */
- 
 ;(function($,window,document,undefined){
     var $window = $(window),
         defaultOptions = {

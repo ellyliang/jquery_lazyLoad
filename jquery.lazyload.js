@@ -9,19 +9,18 @@
 ;(function($,window,document,undefined){
     var $window = $(window),
         defaultOptions = {
-            threshold            : 0,
-            failure_limit        : 0,
-            event                : 'scroll',
-            effect               : 'show',
-            effect_params        : null,
-            container            : window,
-            data_attribute       : 'original',
-            dara_group_attribute : 'group',
-            skip_invisible       : true,
-            appear               : null,
-            load                 : null,
-            vertical_only        : false,
-            placeholderDataImg   : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
+            threshold          : 0,
+            failure_limit      : 0,
+            event              : 'scroll',
+            effect             : 'show',
+            effect_params      : null,
+            container          : window,
+            data_attribute     : 'original',
+            skip_invisible     : true,
+            appear             : null,
+            load               : null,
+            vertical_only      : false,
+            placeholderDataImg : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC',
             // Support IE6\7 that does not support data image
             placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
         },
@@ -107,6 +106,14 @@
         })
     }
 
+    // Remove image from array so it is not looped next time. 
+    function getUnloadElements(elements){
+        var temp = $.grep(elements, function(element){
+            return !element._lazyload_loaded
+        })
+        return $(temp)
+    }
+
     $.fn.lazyload = function(options){
         var elements = this,
             $container,
@@ -133,14 +140,6 @@
                 placeholderSrc = $element.attr('src'),
                 originalSrc = $element.data(options.data_attribute),
                 isImg = $element.is('img')
-
-            // Remove image from array so it is not looped next time. 
-            function getUnloadElements(elements){
-                var temp = $.grep(elements, function(element){
-                    return !element._lazyload_loaded
-                })
-                return $(temp)
-            }
 
             if(element._lazyload_loaded == true || placeholderSrc == originalSrc){
                 element._lazyload_loaded = true
@@ -170,6 +169,7 @@
                         options.appear.call(element, elements_left, options)
                     }
                     $('<img />').on('load', function(){
+                        var elements_left
                         // In most situations, the effect is immediacy show, at this time there is no need to hide element first
                         // Hide this element may cause css reflow, call it as less as possible
                         if(effectIsNotImmediacyShow){
@@ -186,7 +186,7 @@
                         element._lazyload_loaded = true
                         elements = getUnloadElements(elements)
                         if(options.load){
-                            var elements_left = elements.length
+                            elements_left = elements.length
                             options.load.call(element, elements_left, options)
                         }
                     }).attr('src',originalSrc)
@@ -221,9 +221,7 @@
         if(isIOS5){
             $window.on('pageshow', function(event){
                 if (event.originalEvent && event.originalEvent.persisted){
-                    elements.each(function(){
-                        $(this).trigger('_lazyload_appear')
-                    })
+                    elements.trigger('_lazyload_appear')
                 }
             })
         }

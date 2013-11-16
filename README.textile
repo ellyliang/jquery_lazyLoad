@@ -196,10 +196,10 @@ var options = {
     data_attribute     : 'original', // default: 'original'. Another example: 'url'
     // There are cases when you have images which are in viewport but not :visible. To improve performance plugin ignores not visible (`($this.width() || $this.height()) && $this.css("display") !== "none"){`) by default. If you want to load these images set skip_invisible to false.
     skip_invisible     : true, // default: true. Another example: false
-    // Call when one image is appear to the viewport. Params are the appear image element node,count of elements not appear yet, and the options.
-    appear             : null, // default: undefined. Another example: function(element, elements_left, options){}
-    // Call when one image is load. Params are the appear image element node,count of elements not appear yet, and the options.
-    load               : null,
+    // Call when one image is appear to the viewport. The `this` is refer to the appear image element node, params are count of elements not appear yet, and the options.
+    appear             : null, // default: null. Another example: function(elements_left, options){}
+    // Call when one image is load. The `this` is refer to the appear image element node, params are count of elements not appear yet, and the options.
+    load               : null, // default: null. Another example: function(elements_left, options){}
     // In most situations, page can only scroll vertically.At this time, only check images's vertical position will improve performance.You can only set vertical_only to true when page can only scroll vertically.
     vertical_only      : false, // default: false. Another example: true
     // If element is an img and no src attribute given, use placeholder. 

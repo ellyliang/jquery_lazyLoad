@@ -53,6 +53,7 @@
        $("img.lazy").lazyload();
      });              
  });</pre>
+      <pre class="prettyprint"> &lt;img class="lazy" data-original="img/example.jpg" width="765" height="574"&gt;</pre>
       <p>
         On IE6, You can use the codes below,to solve problem that `imgs` have no height when just appended to the DOM tree.
       </p>
@@ -61,14 +62,12 @@
      $("#container").load("images.html", function(response, status, xhr) {
         setTimeout(funtion(){
          $("img.lazy").lazyload();
-       },0)
+        },0)
      });              
  });</pre>
-      <pre class="prettyprint"> &lt;img class="lazy" data-original="img/example.jpg" width="765" height="574"&gt;</pre>
       <div id="container">
           Click me to load content...
       </div>
-      
     </div>
   </div>
   

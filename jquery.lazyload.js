@@ -3,6 +3,16 @@
  *
  * see https://github.com/jieyou/jquery_lazyload
  *
+ * Forked form 
+ *    "Copyright (c) 2007-2013 Mika Tuupola
+ *
+ *    Licensed under the MIT license:
+ *    http://www.opensource.org/licenses/mit-license.php
+ *
+ *    Project home:
+ *    http://www.appelsiini.net/projects/lazyload"
+ *
+ * and modifid.
  */
 ;(function($,window,document,undefined){
     var $window = $(window),
@@ -107,7 +117,7 @@
     // Remove image from array so it is not looped next time. 
     function getUnloadElements(elements){
         var temp = $.grep(elements, function(element){
-            return !element._lazyload_loaded
+            return !element._lazyload_loadStarted
         })
         return $(temp)
     }
@@ -121,7 +131,7 @@
             options = {}
         }
         $.each(defaultOptions,function(k,v){
-            if(!options.hasOwnProperty(k)){
+            if(defaultOptions.hasOwnProperty(k) && (!options.hasOwnProperty(k) || (typeof(options[k]) != typeof(defaultOptions[k])))){
                 options[k] = v
             }
         })
@@ -139,13 +149,13 @@
                 originalSrc = $element.data(options.data_attribute),
                 isImg = $element.is('img')
 
-            if(element._lazyload_loaded == true || placeholderSrc == originalSrc){
-                element._lazyload_loaded = true
+            if(element._lazyload_loadStarted == true || placeholderSrc == originalSrc){
+                element._lazyload_loadStarted = true
                 elements = getUnloadElements(elements)
                 return
             }
 
-            element._lazyload_loaded = false
+            element._lazyload_loadStarted = false
 
             // If element is an img and no src attribute given, use placeholder. 
             if(isImg && !placeholderSrc){
@@ -160,12 +170,13 @@
                 var elements_left,
                     effectParamsIsArray = $.isArray(options.effect_params),
                     effectIsNotImmediacyShow
-                if(!element._lazyload_loaded){
+                if(!element._lazyload_loadStarted){
                     effectIsNotImmediacyShow = (options.effect != 'show' && (!options.effect_params || (effectParamsIsArray && options.effect_params.length == 0)))
                     if(options.appear){
                         elements_left = elements.length
                         options.appear.call(element, elements_left, options)
                     }
+                    element._lazyload_loadStarted = true
                     $('<img />').on('load', function(){
                         var elements_left
                         // In most situations, the effect is immediacy show, at this time there is no need to hide element first
@@ -181,7 +192,6 @@
                         if(effectIsNotImmediacyShow && effectParamsIsArray){
                             $element[options.effect].apply($element,options.effect_params)
                         }
-                        element._lazyload_loaded = true
                         elements = getUnloadElements(elements)
                         if(options.load){
                             elements_left = elements.length
@@ -195,7 +205,7 @@
             // by triggering appear.                              
             if (!isScrollTypeEvent){
                 $element.on(options.event, function(){
-                    if (!element._lazyload_loaded){
+                    if (!element._lazyload_loadStarted){
                         $element.trigger('_lazyload_appear')
                     }
                 })

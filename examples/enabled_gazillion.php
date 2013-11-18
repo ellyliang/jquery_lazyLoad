@@ -9,7 +9,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet"><link href="css/jieyou.css" rel="stylesheet">
   <link rel="shortcut icon" href="ico/favicon.ico">
   <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
+    <script src="page_js/html5shiv.js"></script>
   <![endif]-->
   
   <style type="text/css">

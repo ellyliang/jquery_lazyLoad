@@ -9,7 +9,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet"><link href="css/jieyou.css" rel="stylesheet">
   <link rel="shortcut icon" href="ico/favicon.ico">
   <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
+    <script src="page_js/html5shiv.js"></script>
   <![endif]-->
   
   <style type="text/css">
@@ -50,7 +50,18 @@
       <pre class="prettyprint">
  $("#container").one("click", function() {
      $("#container").load("images.html", function(response, status, xhr) {
+       $("img.lazy").lazyload();
+     });              
+ });</pre>
+      <p>
+        On IE6, You can use the codes below,to solve problem that `imgs` have no height when just appended to the DOM tree.
+      </p>
+      <pre class="prettyprint">
+ $("#container").one("click", function() {
+     $("#container").load("images.html", function(response, status, xhr) {
+        setTimeout(funtion(){
          $("img.lazy").lazyload();
+       },0)
      });              
  });</pre>
       <pre class="prettyprint"> &lt;img class="lazy" data-original="img/example.jpg" width="765" height="574"&gt;</pre>
@@ -108,7 +119,9 @@
   $(function() {
       $("#container").one("click", function() {
           $("#container").load("enabled.html #container", function(response, status, xhr) {
-                $("img.lazy").lazyload();
+            setTimeout(function(){
+              $("img.lazy").lazyload();
+            },0)
           });              
       });
   });

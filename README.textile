@@ -6,7 +6,7 @@ Using Lazy Load on long web pages containing many large images makes the page lo
 
 Lazy Load is inspired by "YUI ImageLoader":http://developer.yahoo.com/yui/imageloader/ Utility by Matt Mlinac.
 
-This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload and add features blow:
+This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload and add features below:
 * Modified many details to improve performance;
 * IE6/7 supported;
 * The `vertical_only` option, if set to true, only check images's vertical position,it can improve performance in page which can only scroll vertically.

@@ -32,7 +32,7 @@
             // Support IE6\7 that does not support data image
             placeholderRealImg : 'http://webmap4.map.bdimg.com/yyfm/lazyload/0.0.1/img/placeholder.png'
         },
-        isIOS5 = (/iphone|ipod|ipad.*os 5/gi).test(navigator.appVersion)
+        isIOS5 = (/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)
 
     function belowthefold(element, options){
         var fold

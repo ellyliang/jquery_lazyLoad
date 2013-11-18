@@ -12,7 +12,7 @@
  *    Project home:
  *    http://www.appelsiini.net/projects/lazyload"
  *
- * and modifid.
+ * and modified.
  */
 ;(function($,window,document,undefined){
     var $window = $(window),

@@ -182,7 +182,7 @@ You can use the options object as the first argument in the `lazyload` method.
 var options = {
     // By default images are loaded when they appear on the screen. If you want images to load earlier use threshold parameter. Setting threshold to 200 causes image to load 200 pixels before it appears on viewport.
     threshold          : 0, // default: 0. Another example: 200
-	// After scrolling page plugin loops though unloaded images. Loop checks if image has become visible. By default loop is stopped when first image outside viewport is found. This is based on following assumption. Order of images on page is same as order of images in HTML code. With some layouts assumption this might be wrong. You can control loading behaviour with failure_limit setting.
+    // After scrolling page plugin loops though unloaded images. Loop checks if image has become visible. By default loop is stopped when first image outside viewport is found. This is based on following assumption. Order of images on page is same as order of images in HTML code. With some layouts assumption this might be wrong. You can control loading behaviour with failure_limit setting.
     failure_limit      : 0, // default: 0. Another example: 10
     // You can use jQuery event such as click or mouseover. You can also use custom events such as sporty or foobar. Default is to wait until user scrolls down and image appears on the viewport.
     event              : 'scroll', // default: 'scroll'. Another example: 'click'
@@ -191,7 +191,7 @@ var options = {
     // the arguments array of `effect` function. For two examples, if `effect` is set to `show` and `effect_params` is set to [400], it will call `$element.show(400)` to show the image after 400ms; if `effect` is set to `fadein` and `effect_params` is set to [400,completeFunction], it will call `$element.fadein(400,completeFunction)` to fadeIn the image in 400ms and call the `completeFunction` when the animation is complete.
     effect_params      : null, // default: undefined. Another example: [400].
     // You can also use plugin for images inside scrolling container, such as div with scrollbar. Just pass the container as jQuery object. There is a demo for horizontal and vertical container.
-    container          : window,
+    container          : window, // default: 'show'. Another example: $('#container')
     // By default images's original url set in `data-original` attribute, you can change it to Another attribute such as `url`,so it will find the original url in `data-url` attribute.
     data_attribute     : 'original', // default: 'original'. Another example: 'url'
     // There are cases when you have images which are in viewport but not :visible. To improve performance plugin ignores not visible (`($this.width() || $this.height()) && $this.css("display") !== "none"){`) by default. If you want to load these images set skip_invisible to false.

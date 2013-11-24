@@ -146,7 +146,7 @@
             var element = this,
                 $element = $(element),
                 placeholderSrc = $element.attr('src'),
-                originalSrc = $element.data(options.data_attribute),
+                originalSrc = $element.attr('data-'+options.data_attribute),
                 isImg = $element.is('img')
 
             if(element._lazyload_loadStarted == true || placeholderSrc == originalSrc){

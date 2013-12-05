@@ -9,7 +9,7 @@ Lazy Load is inspired by "YUI ImageLoader":http://developer.yahoo.com/yui/imagel
 This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload and add features below:
 * Modified many details to improve performance;
 * IE6/7 supported;
-* Available with "Zepto":https://github.com/madrobby/zepto 
+* Available with "Zepto":https://github.com/madrobby/zepto ;
 * The `vertical_only` option, if set to true, only check images's vertical position,it can improve performance in page which can only scroll vertically.
 
 h1. How to Use?

@@ -1,5 +1,5 @@
 /*!
- * Lazy Load - jQuery plugin for lazy loading images
+ * Lazy Load - jQuery | Zepto plugin for lazy loading images
  *
  * see https://github.com/jieyou/jquery_lazyload
  *
@@ -47,7 +47,8 @@
     function rightoffold(element, options){
         var fold
         if(options.container === undefined || options.container === window){
-            fold = $window.width() + $window.scrollLeft()
+            // Zepto do not support `$window.scrollLeft()` yet.
+            fold = $window.width() + ($.fn.scrollLeft?$window.scrollLeft():window.pageXOffset)
         }else{
             fold = $(options.container).offset().left + $(options.container).width()
         }
@@ -67,7 +68,8 @@
     function leftofbegin(element, options){
         var fold
         if(options.container === undefined || options.container === window){
-            fold = $window.scrollLeft()
+            // Zepto do not support `$window.scrollLeft()` yet.
+            fold = $.fn.scrollLeft?$window.scrollLeft():window.pageXOffset
         }else{
             fold = $(options.container).offset().left
         }
@@ -171,7 +173,7 @@
                     effectParamsIsArray = $.isArray(options.effect_params),
                     effectIsNotImmediacyShow
                 if(!element._lazyload_loadStarted){
-                    effectIsNotImmediacyShow = (options.effect != 'show' && (!options.effect_params || (effectParamsIsArray && options.effect_params.length == 0)))
+                    effectIsNotImmediacyShow = (options.effect != 'show' && $.fn[options.effect] &&  (!options.effect_params || (effectParamsIsArray && options.effect_params.length == 0)))
                     if(options.appear){
                         elements_left = elements.length
                         options.appear.call(element, elements_left, options)
@@ -189,8 +191,8 @@
                         }else{
                             $element.css('background-image','url("' + originalSrc + '")')
                         }
-                        if(effectIsNotImmediacyShow && effectParamsIsArray){
-                            $element[options.effect].apply($element,options.effect_params)
+                        if(effectIsNotImmediacyShow){
+                            $element[options.effect].apply($element,effectParamsIsArray?options.effect_params:undefined)
                         }
                         elements = getUnloadElements(elements)
                         if(options.load){
@@ -242,4 +244,4 @@
         return this
     }
 
-})(jQuery, window, document)
+})(window.jQuery||window.Zepto, window, document)

@@ -1,4 +1,4 @@
-h1. Lazy Load Plugin for jQuery
+h1. Lazy Load Plugin for jQuery | Zepto
 
 Lazy Load delays loading of images in long web pages. Images outside of viewport wont be loaded before user scrolls to them. This is opposite of image preloading.
 
@@ -9,16 +9,24 @@ Lazy Load is inspired by "YUI ImageLoader":http://developer.yahoo.com/yui/imagel
 This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola/jquery_lazyload and add features below:
 * Modified many details to improve performance;
 * IE6/7 supported;
+* Available with "https://github.com/madrobby/zepto":Zepto
 * The `vertical_only` option, if set to true, only check images's vertical position,it can improve performance in page which can only scroll vertically.
 
 h1. How to Use?
 
 h2. Basic
 
-Lazy Load depends on jQuery. Include them both in end of your HTML code:
+Lazy Load depends on jQuery or Zepto. Include them both in end of your HTML code:
 
 <pre><script src="jquery.js"></script>
+<!-- or <script src="zepto.js"> -->
 <script src="jquery.lazyload.js"></script></pre>
+
+You can use our cdn server:
+
+<pre><script src="//webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
+<!-- or <script src="//webmap2.map.bdimg.com/yyfm/zepto/1.0/js/zepto.min.js"></script> -->
+<script src="//webmap4.map.bdimg.com/yyfm/lazyLoad/1.0.0/js/lazyLoad.min.js"></script></pre>
 
 You must alter your HTML code. URL of the real image must be put into data-original attribute. It is good idea to give Lazy Loaded image a specific class. This way you can easily control which images plugin is binded to. Note that you should have width and height attributes in your image tag.
 
@@ -143,7 +151,7 @@ $(function() {
  
 $(window).bind("load", function() { 
     var timeout = setTimeout(function() {
-    	$("img.lazy").trigger("sporty")
+        $("img.lazy").trigger("sporty")
     }, 5000);
 });
 </pre>

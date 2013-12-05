@@ -48,6 +48,9 @@
         Compate this to page where plugin is <a href="disabled.html">disabled</a> or page with 
         <a href="enabled.html">larger images</a>.
       </p>
+      <p>
+        Note: The <a href="http://james.padolsey.com/javascript/special-scroll-events-for-jquery/">scrollstop event</a> is only available with jQuery (not available with Zepto).
+      </p>
 
       <pre class="prettyprint">&lt;script src="jquery.scrollstop.js" type="text/javascript"&gt;&lt;/script&gt; </pre>
       <pre class="prettyprint">&lt;img class="lazy" data-original="img/example.jpg" width="80" height="120" alt=""&gt;</pre>
@@ -261,10 +264,10 @@
     </div>
   </div>
 
-  <script src="page_js/jquery.min.js"></script>
-  <!-- // <script src="//zeptojs.com/zepto.min.js"></script> -->
-  <script src="../jquery.lazyload.js"></script>
-  <script src="../jquery.scrollstop.js"></script>
+  <script src="//webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
+  <!-- <!-- <script src="http://webmap2.map.bdimg.com/yyfm/zepto_default/1.0/js/zepto_default.min.js"></script> --> -->
+  <script src="../lazyLoad.js"></script>
+  <script src="http://bcs.duapp.com/jieyou-storage/jquery.scrollstop.min.js"></script>
   <script src="page_js/demo.js"></script>
   <script type="text/javascript">
       $(function() {

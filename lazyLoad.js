@@ -1,18 +1,8 @@
 /*!
- * Lazy Load - jQuery | Zepto plugin for lazy loading images
- *
- * see https://github.com/jieyou/jquery_lazyload
- *
- * Forked form 
- *    "Copyright (c) 2007-2013 Mika Tuupola
- *
- *    Licensed under the MIT license:
- *    http://www.opensource.org/licenses/mit-license.php
- *
- *    Project home:
- *    http://www.appelsiini.net/projects/lazyload"
- *
- * and modified.
+ * author:jieyou
+ * contacts:百度hi->youyo1122
+ * see https://github.com/jieyou/flexibleWapHelper
+ * Forked form "Copyright (c) 2007-2013 Mika Tuupola. Project home:http://www.appelsiini.net/projects/lazyload" and modified.
  */
 ;(function($,window,document,undefined){
     var $window = $(window),

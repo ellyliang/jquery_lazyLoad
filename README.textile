@@ -12,6 +12,11 @@ This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola
 * Available with "Zepto":https://github.com/madrobby/zepto ;
 * The `vertical_only` option, if set to true, only check images's vertical position,it can improve performance in page which can only scroll vertically.
 
+h1. Current Users
+* !http://webmap0.map.bdimg.com/newmap/static/common/images/new-ui-logo_b188cb4.png 133*44!
+* !http://s2.pctuan.bdimg.com/static/widget/common/header/search-box/img/logo_58939df1.gif 133*43!
+
+
 h1. How to Use?
 
 h2. Basic
@@ -20,13 +25,13 @@ Lazy Load depends on jQuery or Zepto. Include them both in end of your HTML code
 
 <pre><script src="jquery.js"></script>
 <!-- or <script src="zepto.js"> -->
-<script src="jquery.lazyload.js"></script></pre>
+<script src="lazyLoad.min.js"></script></pre>
 
 You can use our cdn server:
 
-<pre><script src="//webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
-<!-- or <script src="//webmap2.map.bdimg.com/yyfm/zepto_default/1.0/js/zepto_default.min.js"></script> -->
-<script src="//webmap3.map.bdimg.com/yyfm/lazyLoad/1.0.0/js/lazyLoad.min.js"></script></pre>
+<pre><script src="http://webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
+<!-- or <script src="http://webmap2.map.bdimg.com/yyfm/zepto_default/1.1.2/js/zepto_default.min.js"></script> -->
+<script src="http://webmap3.map.bdimg.com/yyfm/lazyLoad/1.0.0/js/lazyLoad.min.js"></script></pre>
 
 You must alter your HTML code. URL of the real image must be put into data-original attribute. It is good idea to give Lazy Loaded image a specific class. This way you can easily control which images plugin is binded to. Note that you should have width and height attributes in your image tag.
 

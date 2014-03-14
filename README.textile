@@ -13,8 +13,8 @@ This project is forked from "tuupola/jquery_lazyload":https://github.com/tuupola
 * The `vertical_only` option, if set to true, only check images's vertical position,it can improve performance in page which can only scroll vertically.
 
 h1. Current Users
-* !http://webmap0.map.bdimg.com/newmap/static/common/images/new-ui-logo_b188cb4.png 133*44!
-* !http://s2.pctuan.bdimg.com/static/widget/common/header/search-box/img/logo_58939df1.gif 133*43!
+* !http://webmap0.map.bdimg.com/newmap/static/common/images/new-ui-logo_b188cb4.png 133*44! 
+* !http://s2.pctuan.bdimg.com/static/widget/common/header/search-box/img/logo_58939df1.gif 133*43! 
 
 
 h1. How to Use?

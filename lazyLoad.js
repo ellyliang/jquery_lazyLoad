@@ -71,7 +71,7 @@
         elements.each(function(){
             var $this = $(this)
             if(options.skip_invisible &&
-            // Support zepto for future
+            // Support zepto
              !($this.width() || $this.height()) && $this.css("display") !== "none"){
                 return
             }

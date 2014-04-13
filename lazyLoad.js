@@ -1,7 +1,7 @@
 /*!
  * author:jieyou
- * contacts:百度hi->youyo1122
- * see https://github.com/jieyou/flexibleWapHelper
+ * contacts:baidu hi->youyo1122
+ * see https://github.com/jieyou/jquery_lazyLoad
  * Forked form "Copyright (c) 2007-2013 Mika Tuupola. Project home:http://www.appelsiini.net/projects/lazyload" and modified.
  */
 ;(function($,window,document,undefined){

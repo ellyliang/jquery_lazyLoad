@@ -27,15 +27,9 @@ h3. Basic
 
 图片延迟加载插件基于jQuery或Zepto，在你HTML代码的尾部引入他们：
 
-<pre><script src="jquery.js"></script>
+<pre><script src="jQuery.js"></script>
 <!-- 或 <script src="zepto.js"> -->
 <script src="lazyLoad.min.js"></script></pre>
-
-你也可以使用我们的CDN服务器：
-
-<pre><script src="http://webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
-<!-- 或 <script src="http://webmap2.map.bdimg.com/yyfm/zepto_default/1.1.2/js/zepto_default.min.js"></script> -->
-<script src="http://webmap3.map.bdimg.com/yyfm/lazyLoad/1.0.0/js/lazyLoad.min.js"></script></pre>
 
 你必须改变你的HTML代码。真实图像的URL必须被放入到`data-original`属性中。给所有需要延迟加载图片一个特殊的class是一个好主意。这样你就可以很容易地控制哪些图片会被插件绑定到。请注意，你的图片应该有宽度和高度属性，或者通过CSS来控制图片的宽度和高度。
 
